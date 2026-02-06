@@ -1,41 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>@yield('title', 'MeRS – Mental Routing System')</title>
-
-    {{-- Vite + Tailwind --}}
+    <title>MeRS - Mental Routing System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        .font-heading { font-family: 'Nunito', sans-serif; }
+        .font-body { font-family: 'Poppins', sans-serif; }
+        .floating { animation: float 3s ease-in-out infinite; }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+<body class="bg-[#FBFDFF] font-body text-[#1E293B] antialiased overflow-x-hidden">
 
-    {{-- Header --}}
-    <header class="w-full border-b bg-white">
-        <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
-            <div class="text-lg font-semibold tracking-wide">
-                MeRS
-            </div>
-            <div class="text-sm text-slate-500">
-                Mental Routing System
-            </div>
-        </div>
-    </header>
+    <div class="fixed top-8 right-8 md:top-12 md:right-16 z-50">
+        <img src="{{ asset('img/logo.png') }}" alt="Logo" class="w-12 md:w-16 h-auto drop-shadow-md">
+    </div>
 
-    {{-- Main Content --}}
-    <main class="flex-1">
-        <div class="max-w-5xl mx-auto px-4 py-10">
-            @yield('content')
-        </div>
+    <main>
+        @yield('content')
     </main>
-
-    {{-- Footer --}}
-    <footer class="border-t bg-white">
-        <div class="max-w-5xl mx-auto px-4 py-4 text-center text-sm text-slate-500">
-            © {{ date('Y') }} MeRS — Early Detection, Proper Direction
-        </div>
-    </footer>
 
 </body>
 </html>

@@ -2,134 +2,131 @@
 
 @section('title', 'Recommended Support – MeRS')
 
+
+<link rel="stylesheet" href="{{ asset('css/routing.css') }}">
+
+
 @section('content')
-<div class="max-w-3xl mx-auto">
 
-    <h1 class="text-2xl font-semibold mb-4 text-center">
-        Recommended Support
-    </h1>
+{{-- 1. WRAPPER PENENGAH (TIDAK BERUBAH) --}}
+<div class="page-centering-wrapper">
 
-    <p class="text-slate-600 text-center mb-10 leading-relaxed">
-        Based on your screening result, MeRS suggests the following
-        support options. You are free to choose what feels most appropriate
-        for your situation.
-    </p>
+    {{-- 2. KARTU UTAMA (TIDAK BERUBAH) --}}
+    <div class="final-centered-card">
 
-    @php
-        $risk = session('risk_level', 'low');
-    @endphp
+        {{-- Header Kartu --}}
+        <div class="final-card-header">
+            <h1 class="final-title">Recommended Support</h1>
+            <p class="final-subtitle">
+                Based on your result, here are the suggested next steps.
+            </p>
+        </div>
 
-    {{-- LOW RISK --}}
-    @if ($risk === 'low')
-        <div class="space-y-6">
+        @php
+            $risk = session('risk_level', 'low');
+        @endphp
 
-            <div class="bg-white border rounded-lg p-6">
-                <h2 class="text-lg font-semibold mb-2">
-                    Self-Care & Mental Health Education
-                </h2>
-                <p class="text-slate-600 text-sm mb-4">
-                    Your screening indicates mild psychological distress.
-                    Maintaining self-care routines and improving mental health
-                    awareness may be sufficient at this stage.
-                </p>
-                <ul class="list-disc list-inside text-sm text-slate-600">
-                    <li>Stress management and relaxation techniques</li>
-                    <li>Healthy sleep and daily routines</li>
-                    <li>Reliable mental health education resources</li>
-                </ul>
-            </div>
+        {{-- CONTAINER ITEM BARU --}}
+        <div>
 
-            <div class="bg-white border rounded-lg p-6">
-                <h2 class="text-lg font-semibold mb-2">
-                    Periodic Self-Monitoring
-                </h2>
-                <p class="text-slate-600 text-sm">
-                    You may consider repeating the screening periodically
-                    to monitor any changes in your psychological condition.
-                </p>
-            </div>
+            {{-- === LOW RISK === --}}
+            @if ($risk === 'low')
+                {{-- Item 1 --}}
+                <div class="support-item-modern">
+                    <div class="icon-square">🌱</div>
+                    <div class="content-area">
+                        <h3 class="item-title">Self-Care & Education</h3>
+                        <p class="item-desc">Maintain routines and improve awareness.</p>
+                        <ul class="custom-list">
+                            <li>Stress management techniques</li>
+                            <li>Healthy sleep habits</li>
+                            <li>Read mental health articles</li>
+                        </ul>
+                    </div>
+                </div>
+
+                {{-- Item 2 --}}
+                <div class="support-item-modern">
+                    <div class="icon-square">📅</div>
+                    <div class="content-area">
+                        <h3 class="item-title">Periodic Monitoring</h3>
+                        <p class="item-desc">
+                            Consider repeating this screening next month to track any changes in your mood.
+                        </p>
+                    </div>
+                </div>
+            @endif
+
+            {{-- === MODERATE RISK === --}}
+            @if ($risk === 'moderate')
+                {{-- Item 1 --}}
+                <div class="support-item-modern">
+                    <div class="icon-square">👩‍⚕️</div>
+                    <div class="content-area">
+                        <h3 class="item-title">Professional Support</h3>
+                        <p class="item-desc">Consult a psychologist to prevent worsening symptoms.</p>
+                        <ul class="custom-list">
+                            <li>Clinical Psychologists</li>
+                            <li>University Counseling Services</li>
+                            <li>Tele-medicine Apps</li>
+                        </ul>
+                    </div>
+                </div>
+
+                {{-- Item 2 --}}
+                <div class="support-item-modern">
+                    <div class="icon-square">🧘</div>
+                    <div class="content-area">
+                        <h3 class="item-title">Active Self-Care</h3>
+                        <p class="item-desc">
+                            Combine professional counseling with mindfulness & regular exercise.
+                        </p>
+                    </div>
+                </div>
+            @endif
+
+            {{-- === HIGH RISK === --}}
+            @if ($risk === 'high')
+                {{-- Item 1 (URGENT) --}}
+                <div class="support-item-modern urgent">
+                    <div class="icon-square">🚑</div>
+                    <div class="content-area">
+                        <h3 class="item-title">Immediate Support Required</h3>
+                        <p class="item-desc">Urgent professional help is strongly recommended.</p>
+                        <ul class="custom-list">
+                            <li>Psychiatrists or Specialists</li>
+                            <li>Hospital Emergency (IGD)</li>
+                            <li>Crisis Hotline (119)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                {{-- Item 2 --}}
+                <div class="support-item-modern">
+                    <div class="icon-square">🤝</div>
+                    <div class="content-area">
+                        <h3 class="item-title">Seek Assistance</h3>
+                        <p class="item-desc">
+                            Please do not keep this alone. Ask a trusted person to accompany you.
+                        </p>
+                    </div>
+                </div>
+            @endif
 
         </div>
-    @endif
 
-    {{-- MODERATE RISK --}}
-    @if ($risk === 'moderate')
-        <div class="space-y-6">
-
-            <div class="bg-white border rounded-lg p-6">
-                <h2 class="text-lg font-semibold mb-2">
-                    Professional Psychological Support
-                </h2>
-                <p class="text-slate-600 text-sm mb-4">
-                    Your screening suggests a moderate level of psychological distress.
-                    Consulting a licensed psychologist can help address your concerns
-                    and prevent symptoms from worsening.
-                </p>
-                <ul class="list-disc list-inside text-sm text-slate-600">
-                    <li>Clinical psychologists</li>
-                    <li>University or community counseling services</li>
-                    <li>Tele-psychology platforms</li>
-                </ul>
-            </div>
-
-            <div class="bg-white border rounded-lg p-6">
-                <h2 class="text-lg font-semibold mb-2">
-                    Psychoeducation & Self-Care
-                </h2>
-                <p class="text-slate-600 text-sm">
-                    Combining professional support with daily self-care
-                    practices may improve overall well-being.
-                </p>
-            </div>
-
-        </div>
-    @endif
-
-    {{-- HIGH RISK --}}
-    @if ($risk === 'high')
-        <div class="space-y-6">
-
-            <div class="bg-red-50 border border-red-300 rounded-lg p-6">
-                <h2 class="text-lg font-semibold mb-2 text-red-700">
-                    Immediate Professional Support Required
-                </h2>
-                <p class="text-red-700 text-sm mb-4">
-                    Your screening indicates a high level of psychological distress.
-                    Immediate professional or emergency support is strongly recommended
-                    to ensure your safety.
-                </p>
-                <ul class="list-disc list-inside text-sm text-red-700">
-                    <li>Psychiatrists or mental health specialists</li>
-                    <li>Hospital emergency services</li>
-                    <li>Crisis hotlines and emergency mental health services</li>
-                </ul>
-            </div>
-
-            <div class="bg-white border rounded-lg p-6">
-                <h2 class="text-lg font-semibold mb-2">
-                    Involve Trusted Individuals
-                </h2>
-                <p class="text-slate-600 text-sm">
-                    Consider reaching out to a trusted family member or close friend
-                    to help you seek immediate support.
-                </p>
-            </div>
-
-        </div>
-    @endif
-
-    <div class="mt-12 text-center">
-        <a href="{{ url('/') }}"
-           class="inline-block px-6 py-2 rounded-md border
-                  text-slate-600 hover:bg-slate-100">
+        {{-- Tombol Home --}}
+        <a href="{{ url('/') }}" class="btn-home-styled">
             Finish & Return Home
         </a>
-    </div>
 
-    <p class="text-xs text-slate-500 mt-8 text-center">
-        MeRS does not replace professional diagnosis or treatment.
-        If you feel unsafe, please contact emergency services immediately.
-    </p>
+        {{-- Disclaimer Kecil --}}
+        <p style="text-align: center; font-size: 0.7rem; color: #94a3b8; margin-top: 1.5rem;">
+            MeRS is not a medical diagnosis. In emergencies, contact authorities immediately.
+        </p>
+
+    </div>
+    {{-- End Card --}}
 
 </div>
 @endsection

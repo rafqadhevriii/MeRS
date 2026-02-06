@@ -1,0 +1,160 @@
+/* =========================================
+   FINAL COMBINED CSS: LAYOUT + BEAUTIFICATION
+   (Gunakan ini untuk membereskan container & isi)
+   ========================================= */
+
+/* 1. LAYOUT: MEMBUAT KARTU DI TENGAH */
+.page-centering-wrapper {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    background-color: transparent; /* Atau sesuaikan background body */
+}
+
+.final-centered-card {
+    background-color: white;
+    width: 100%;
+    max-width: 38rem; /* UKURAN KARTU DIPATOK DISINI */
+    margin: 0 auto;
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1); /* Shadow biar timbul */
+    border: 1px solid #e2e8f0;
+    text-align: left;
+    position: relative;
+    box-sizing: border-box; /* Pastikan padding tidak nambah lebar */
+}
+
+/* Header Judul di dalam kartu */
+.final-card-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.final-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.final-subtitle {
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+/* 2. BEAUTIFICATION: STYLE ITEM YANG KEREN */
+.support-item-modern {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background-color: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    transition: all 0.2s ease;
+}
+
+.support-item-modern:hover {
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-color: #e2e8f0;
+    transform: translateY(-2px);
+}
+
+/* Kotak Icon */
+.icon-square {
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    background-color: #e0f2fe;
+    color: #0284c7;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+/* Area Teks */
+.content-area {
+    flex: 1;
+}
+
+.item-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.25rem;
+}
+
+.item-desc {
+    font-size: 0.9rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+
+/* List Poin-poin */
+.custom-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-top: 0.75rem;
+    border-top: 1px dashed #cbd5e1;
+    padding-top: 0.75rem;
+}
+
+.custom-list li {
+    font-size: 0.85rem;
+    color: #475569;
+    margin-bottom: 0.35rem;
+    padding-left: 1.25rem;
+    position: relative;
+}
+
+.custom-list li::before {
+    content: "•";
+    color: #3b82f6;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* VARIASI URGENT */
+.support-item-modern.urgent {
+    background-color: #fef2f2;
+    border-color: #fee2e2;
+}
+.support-item-modern.urgent .icon-square {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+.support-item-modern.urgent .item-title {
+    color: #991b1b;
+}
+
+/* Tombol Home */
+.btn-home-styled {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background-color: white;
+    color: #475569;
+    font-weight: 600;
+    text-align: center;
+    border: 2px solid #e2e8f0;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    margin-top: 2rem;
+    transition: all 0.2s;
+}
+.btn-home-styled:hover {
+    border-color: #94a3b8;
+    color: #1e293b;
+    background-color: #f8fafc;
+}

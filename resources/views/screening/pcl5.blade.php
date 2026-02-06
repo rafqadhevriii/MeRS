@@ -2,93 +2,115 @@
 
 @section('title', 'PCL-5 Screening – MeRS')
 
+
+<link rel="stylesheet" href="{{ asset('css/screening.css') }}">
+
+
 @section('content')
-<div class="max-w-3xl mx-auto">
+<div class="screening-container theme-red">
 
-    <h1 class="text-2xl font-semibold mb-2">
-        PCL-5 Screening
-    </h1>
+    <div class="sticky-header">
+        <div class="progress-track">
+            <div class="track-bg"></div>
+            <div id="dynamic-bar" class="track-fill" style="width: 66%;"></div>
 
-    <p class="text-slate-600 mb-6 leading-relaxed">
-        In the past <strong>month</strong>, how much were you bothered by the following
-        problems related to stressful or traumatic experiences?
-    </p>
+            <div class="steps-wrapper">
+                <div class="step-item done">
+                    <div class="step-circle">✓</div>
+                </div>
+
+                <div class="step-item done">
+                    <div class="step-circle" style="background-color: #f59e0b;">✓</div>
+                </div>
+
+                <div class="step-item active">
+                    <div class="step-circle">3</div>
+                    <span class="step-label">Impact</span>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-circle">🏁</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-box">
+        <h1 class="header-title">Trauma Impact (PCL-5)</h1>
+        <p class="header-desc">
+            In the past <strong>month</strong>, how much have you been bothered by these problems?
+        </p>
+    </div>
 
     <form action="{{ url('/screening/pcl5') }}" method="post">
     @csrf
-
         @php
             $questions = [
-                'Repeated, disturbing memories or thoughts of a stressful experience',
-                'Repeated, disturbing dreams related to a stressful experience',
-                'Suddenly feeling or acting as if the stressful experience were happening again',
-                'Feeling very upset when something reminded you of a stressful experience',
-                'Having strong physical reactions when reminded of a stressful experience',
-                'Avoiding memories, thoughts, or feelings related to the experience',
-                'Avoiding external reminders of the experience',
-                'Trouble remembering important parts of the experience',
-                'Strong negative beliefs about yourself or the world',
-                'Blaming yourself or others for the experience',
-                'Strong negative emotions such as fear, anger, guilt, or shame',
-                'Loss of interest in activities you used to enjoy',
-                'Feeling distant or cut off from others',
-                'Trouble experiencing positive feelings',
-                'Irritable behavior or angry outbursts',
-                'Taking too many risks or doing things that could cause harm',
-                'Being overly alert or watchful',
-                'Feeling jumpy or easily startled',
-                'Difficulty concentrating',
-                'Trouble falling or staying asleep'
+                'Repeated, disturbing, and unwanted memories of the stressful experience.',
+                'Repeated, disturbing dreams of the stressful experience.',
+                'Suddenly feeling or acting as if the stressful experience were happening again.',
+                'Feeling very upset when something reminded you of the stressful experience.',
+                'Having strong physical reactions when reminded of the stressful experience.',
+                'Avoiding memories, thoughts, or feelings related to the stressful experience.',
+                'Avoiding external reminders (people, places, activities, situations).',
+                'Trouble remembering important parts of the stressful experience.',
+                'Strong negative beliefs about yourself, others, or the world.',
+                'Blaming yourself or others for the stressful experience.',
+                'Persistent negative emotional state (fear, anger, guilt, shame).',
+                'Loss of interest in activities you used to enjoy.',
+                'Feeling distant or cut off from other people.',
+                'Difficulty experiencing positive emotions.',
+                'Irritable behavior or angry outbursts.',
+                'Risky or self-destructive behavior.',
+                'Being “super alert,” watchful, or on guard.',
+                'Feeling jumpy or easily startled.',
+                'Difficulty concentrating.',
+                'Trouble falling or staying asleep.'
             ];
-
-            $options = [
-                0 => 'Not at all',
-                1 => 'A little bit',
-                2 => 'Moderately',
-                3 => 'Quite a bit',
-                4 => 'Extremely'
-            ];
+            $options = [0 => 'Not at all', 1 => 'A little bit', 2 => 'Moderately', 3 => 'Quite a bit', 4 => 'Extremely'];
         @endphp
 
-        <div class="space-y-6">
-
+        <div class="questions-list">
             @foreach ($questions as $index => $question)
-                <div class="bg-white border rounded-lg p-4">
-                    <p class="font-medium mb-3">
-                        {{ $index + 1 }}. {{ $question }}
-                    </p>
+                <div class="question-card">
+                    <p class="question-text">{{ $index + 1 }}. {{ $question }}</p>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div class="options-grid cols-3">
                         @foreach ($options as $value => $label)
-                            <label class="flex items-center gap-2 text-sm">
-                                <input type="radio"
-                                       name="q{{ $index }}"
-                                       value="{{ $value }}"
-                                       required
-                                       class="text-slate-700">
-                                {{ $label }}
+                            <label class="radio-label">
+                                <input type="radio" name="q{{ $index }}" value="{{ $value }}" required class="sr-only-input input-radio">
+                                <div class="option-box">{{ $label }}</div>
                             </label>
                         @endforeach
                     </div>
                 </div>
             @endforeach
-
         </div>
 
-        <div class="flex justify-between items-center mt-8">
-            <a href="{{ url('/screening/gad7') }}"
-               class="text-sm text-slate-600 hover:underline">
-                ← Back
-            </a>
-
-            <button type="submit"
-                    class="px-6 py-2 rounded-md bg-slate-800 text-white
-                           hover:bg-slate-700 transition">
-                Finish Screening
-            </button>
+        <div class="btn-wrapper">
+            <a href="{{ url('/screening/gad7') }}" class="btn-back">← Back</a>
+            <button type="submit" class="btn-next">Finish & Submit</button>
         </div>
-
     </form>
-
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const radios = document.querySelectorAll('.input-radio');
+        const progressBar = document.getElementById('dynamic-bar');
+        const totalQuestions = {{ count($questions) }};
+
+        const startPercent = 66;
+        const rangePercent = 34;
+
+        function updateProgress() {
+            const answered = new Set();
+            radios.forEach(r => { if(r.checked) answered.add(r.name); });
+            const localProgress = answered.size / totalQuestions;
+            progressBar.style.width = (startPercent + (localProgress * rangePercent)) + '%';
+        }
+        radios.forEach(radio => radio.addEventListener('change', updateProgress));
+        updateProgress();
+    });
+</script>
 @endsection

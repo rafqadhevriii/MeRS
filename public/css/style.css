@@ -1,0 +1,315 @@
+/* =========================================
+   BATAS LANDING PAGE (DI ATAS)
+   MULAI DARI SINI: SCREENING & CONSENT STYLES
+   ========================================= */
+
+/* --- Wrapper & Layout --- */
+.screening-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 24px;
+    background-color: var(--light); /* Sama dengan body landing page */
+}
+
+/* --- Kartu Utama (Consent & Form) --- */
+.consent-card {
+    background: white;
+    width: 100%;
+    max-width: 700px;
+    border-radius: 24px; /* Lebih rounded dikit dari landing page */
+    border: 1px solid #E2E8F0; /* Sama dengan feature-box */
+    box-shadow: 0 10px 40px rgba(91, 130, 184, 0.1); /* Shadow halus warna biru */
+    overflow: hidden;
+    position: relative;
+}
+
+/* --- Header Kartu --- */
+.card-header {
+    background-color: white;
+    padding: 40px 40px 20px 40px;
+    border-bottom: 1px solid #F1F5F9;
+}
+
+.card-header h1 {
+    font-family: 'Nunito', sans-serif; /* Font Judul Landing Page */
+    color: var(--dark);
+    font-weight: 800;
+    font-size: 1.8rem;
+    margin: 0 0 10px 0;
+}
+
+.card-header p {
+    font-family: 'Poppins', sans-serif;
+    color: var(--gray);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* --- Body Kartu --- */
+.card-body {
+    padding: 30px 40px 40px 40px;
+}
+
+/* --- List Info (Consent Page) --- */
+.info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 15px;
+    border-radius: 16px;
+    transition: background-color 0.2s;
+}
+
+.info-item:hover {
+    background-color: #F8FAFC;
+}
+
+/* Ikon Kotak (Menggunakan Warna Landing Page) */
+.icon-box {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px; /* Sama dengan icon-circle landing page */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-box svg {
+    width: 22px;
+    height: 22px;
+    stroke-width: 2.5;
+}
+
+/* Warna-warni Icon (Sesuai Landing Page: Green, Yellow, Pink + Blue) */
+.icon-box.blue   { background: #E0F2FE; color: var(--primary); }
+.icon-box.green  { background: #DFFCF1; color: #10B981; } /* Landing Page Green */
+.icon-box.yellow { background: #FFF7DC; color: #F59E0B; } /* Landing Page Yellow */
+.icon-box.pink   { background: #FFE3EC; color: #EC4899; } /* Landing Page Pink */
+
+.info-text h2 {
+    font-family: 'Nunito', sans-serif;
+    margin: 0 0 6px 0;
+    font-size: 1.1rem;
+    color: var(--dark);
+    font-weight: 700;
+}
+
+.info-text p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.5;
+}
+
+/* --- Form & Checkbox --- */
+.agreement-box {
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    padding: 20px;
+    border-radius: 16px;
+    margin: 30px 0;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-top: 4px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary); /* Checkbox warna biru primary */
+}
+
+.checkbox-text {
+    font-size: 0.9rem;
+    color: var(--dark);
+    font-weight: 500;
+}
+
+/* --- QUESTIONNAIRE STYLES --- */
+/* Header Badge */
+.header-badge-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.q-badge {
+    background: var(--primary);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Progress Bar */
+.progress-container {
+    height: 8px;
+    background-color: #F1F5F9;
+    border-radius: 10px;
+    margin-top: 25px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--primary);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+/* Pertanyaan */
+.question-text {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dark);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Pilihan Ganda Grid */
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.option-label {
+    cursor: pointer;
+    position: relative;
+}
+
+.option-label input[type="radio"] { position: absolute; opacity: 0; }
+
+.option-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 10px;
+    background: white;
+    border: 2px solid #E2E8F0;
+    border-radius: 16px;
+    transition: all 0.2s ease;
+    height: 100%;
+    text-align: center;
+}
+
+.opt-val {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #CBD5E1; /* Abu-abu muda */
+    margin-bottom: 5px;
+}
+
+.opt-text {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--gray);
+    line-height: 1.3;
+}
+
+/* Hover & Active State */
+.option-label:hover .option-content {
+    border-color: var(--primary);
+    background-color: #F8FAFC;
+}
+
+.option-label input[type="radio"]:checked + .option-content {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    box-shadow: 0 8px 20px rgba(91, 130, 184, 0.3);
+    transform: translateY(-2px);
+}
+
+.option-label input[type="radio"]:checked + .option-content .opt-val,
+.option-label input[type="radio"]:checked + .option-content .opt-text {
+    color: white;
+}
+
+/* --- Tombol (Mengikuti Style Landing Page) --- */
+.btn-action-group {
+    display: flex;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.btn-mers {
+    padding: 14px 28px;
+    border-radius: 12px; /* Sama dengan btn landing page */
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s;
+    border: none;
+    font-size: 1rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.btn-mers-primary {
+    background-color: var(--primary);
+    color: white;
+    flex: 2;
+    box-shadow: 0 4px 10px rgba(91, 130, 184, 0.2);
+}
+
+.btn-mers-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(91, 130, 184, 0.3);
+}
+
+.btn-mers-secondary {
+    background-color: white;
+    border: 2px solid #E2E8F0;
+    color: var(--gray);
+    flex: 1;
+}
+
+.btn-mers-secondary:hover {
+    border-color: var(--gray);
+    color: var(--dark);
+}
+
+/* --- Responsif HP --- */
+@media (max-width: 600px) {
+    .options-grid { grid-template-columns: 1fr; }
+    .option-content {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 15px 20px;
+        gap: 20px;
+        text-align: left;
+    }
+    .opt-val { margin-bottom: 0; width: 30px; }
+
+    .btn-action-group { flex-direction: column-reverse; }
+    .card-header, .card-body { padding: 24px; }
+}
+
+
+
+
+

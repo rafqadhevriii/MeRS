@@ -1,68 +1,81 @@
 @extends('layout.app')
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
 
 @section('title', 'Informed Consent – MeRS')
 
 @section('content')
-<div class="max-w-3xl mx-auto">
+<div class="screening-wrapper">
+    <div class="consent-card">
 
-    <h1 class="text-2xl font-semibold mb-4">
-        Informed Consent
-    </h1>
-
-    <p class="text-slate-600 mb-6 leading-relaxed">
-        Before continuing, please read the information below carefully.
-        This screening is designed to support early detection and appropriate
-        referral — not to provide a medical diagnosis.
-    </p>
-
-    <div class="bg-white border rounded-lg p-6 space-y-4 text-slate-700">
-
-        <div>
-            <h2 class="font-semibold mb-1">Purpose of MeRS</h2>
-            <p class="text-sm">
-                MeRS helps identify psychological risk levels using standardized
-                screening tools and guides users toward suitable mental health services.
-            </p>
+        <div class="card-header">
+            <h1>Informed Consent</h1>
+            <p>Please read the following information carefully before proceeding to the screening.</p>
         </div>
 
-        <div>
-            <h2 class="font-semibold mb-1">Data Protection</h2>
-            <p class="text-sm">
-                Your responses are encrypted and stored securely for a maximum of
-                30 days before being automatically deleted. Personal identifiers
-                are not required to complete this screening.
-            </p>
-        </div>
+        <div class="card-body">
 
-        <div>
-            <h2 class="font-semibold mb-1">Limitations</h2>
-            <p class="text-sm">
-                This screening does not replace professional diagnosis or treatment.
-                If high-risk indicators are detected, you may be guided toward
-                professional or emergency services.
-            </p>
-        </div>
+            <div class="info-list">
+                <div class="info-item">
+                    <div class="icon-box blue">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div class="info-text">
+                        <h2>Purpose of MeRS</h2>
+                        <p>MeRS helps identify psychological risk levels using standardized screening tools.</p>
+                    </div>
+                </div>
 
-        <div>
-            <h2 class="font-semibold mb-1">Emergency Situations</h2>
-            <p class="text-sm">
-                If you are currently experiencing thoughts of self-harm or feel
-                unsafe, please seek immediate help from local emergency services.
-            </p>
-        </div>
+                <div class="info-item">
+                    <div class="icon-box green">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </div>
+                    <div class="info-text">
+                        <h2>Data Protection</h2>
+                        <p>Your responses are anonymous and stored securely for a limited time.</p>
+                    </div>
+                </div>
 
+                <div class="info-item">
+                    <div class="icon-box yellow">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    </div>
+                    <div class="info-text">
+                        <h2>Limitations</h2>
+                        <p>This is a screening tool, not a medical diagnosis.</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="icon-box pink">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                    </div>
+                    <div class="info-text">
+                        <h2>Emergency</h2>
+                        <p>If you feel unsafe, please seek professional help immediately.</p>
+                    </div>
+                </div>
+            </div>
+
+            <form action="{{ url('/screening/phq9') }}" method="get">
+                <div class="agreement-box">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="agree" required>
+                        <span class="checkbox-text">
+                            I have read, understood, and agree to proceed.
+                        </span>
+                    </label>
+                </div>
+
+                <div class="btn-action-group">
+                    <a href="{{ url('/') }}" class="btn-mers btn-mers-secondary">Cancel</a>
+                    <button type="submit" class="btn-mers btn-mers-primary">
+                        Start Screening
+                    </button>
+                </div>
+            </form>
+
+        </div>
     </div>
-
-    <form action="{{ url('/screening/phq9') }}" method="get" class="mt-6">
-
-        <div class="flex items-start mb-6">
-            <input type="checkbox" id="agree" required
-                   class="mt-1 mr-3 rounded border-slate-300">
-            <label for="agree" class="text-sm text-slate-700">
-                I have read and understood the information above, and I voluntarily
-                agree to proceed with the screening.
-            </label>
-        </div>
-
-        <div class="flex gap-4">
-            <a href="{{ url('/') }}"
+</div>
+@endsection

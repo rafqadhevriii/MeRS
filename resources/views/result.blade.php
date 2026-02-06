@@ -2,59 +2,67 @@
 
 @section('title', 'Screening Result – MeRS')
 
+
+<link rel="stylesheet" href="{{ asset('css/result.css') }}">
+
+
 @section('content')
-<div class="max-w-2xl mx-auto text-center">
+<div class="result-page-wrapper">
 
-    <h1 class="text-2xl font-semibold mb-4">
-        Screening Result
-    </h1>
+    <div class="result-main-card">
 
-    <p class="text-slate-600 mb-8 leading-relaxed">
-        Based on your responses, MeRS has identified your current
-        psychological risk level. This result is not a medical diagnosis,
-        but a guide to help you access appropriate support.
-    </p>
+        {{-- 1. HEADER SECTION --}}
+        <div class="result-header">
+            <h1 class="result-main-title">Screening Result</h1>
+            <p class="result-subtitle">
+                Based on your responses, here is the analysis of your current psychological state.
+            </p>
+        </div>
 
-    @php
-        $labels = [
-            'low' => [
-                'Low Risk',
-                'Your responses indicate mild psychological distress. At this stage, self-care, monitoring, and mental health education may be sufficient.'
-            ],
-            'moderate' => [
-                'Moderate Risk',
-                'You may be experiencing psychological distress that could benefit from professional psychological support to prevent symptoms from becoming more severe.'
-            ],
-            'high' => [
-                'High Risk',
-                'Your responses indicate a high level of psychological distress. Immediate professional or emergency support is strongly recommended to ensure your safety.'
-            ]
-        ];
-    @endphp
+        @php
+            $labels = [
+                'low' => [
+                    'title' => 'Low Risk',
+                    'desc' => 'Your responses indicate mild psychological distress. Self-care and monitoring may be sufficient at this stage.',
+                    'class' => 'risk-low'
+                ],
+                'moderate' => [
+                    'title' => 'Moderate Risk',
+                    'desc' => 'You may be experiencing distress that could benefit from professional support to prevent worsening symptoms.',
+                    'class' => 'risk-mod'
+                ],
+                'high' => [
+                    'title' => 'High Risk',
+                    'desc' => 'High level of distress indicated. Immediate professional or emergency support is strongly recommended.',
+                    'class' => 'risk-high'
+                ]
+            ];
+            $currentResult = $labels[$risk] ?? $labels['low'];
+        @endphp
 
-    {{-- Risk Level Card --}}
-    <div class="bg-white border rounded-lg p-6 mb-8">
+        {{-- 2. RESULT BOX (Fokus Utama) --}}
+        <div class="risk-status-box {{ $currentResult['class'] }}">
+            <div class="risk-badge">Current Status</div>
+            <h2 class="risk-title">{{ $currentResult['title'] }}</h2>
+            <p class="risk-description">
+                {{ $currentResult['desc'] }}
+            </p>
+        </div>
 
-        <h2 class="text-xl font-semibold mb-2">
-            {{ $labels[$risk][0] }}
-        </h2>
-
-        <p class="text-slate-600 text-sm leading-relaxed">
-            {{ $labels[$risk][1] }}
-        </p>
+        {{-- 3. ACTION BUTTON --}}
+        <div class="result-action-area">
+            <p class="action-label">What should you do next?</p>
+            <a href="{{ url('/routing') }}" class="btn-result-primary">
+                View Recommended Support
+            </a>
+        </div>
 
     </div>
 
-    {{-- Action --}}
-    <a href="{{ url('/routing') }}"
-       class="inline-block px-8 py-3 rounded-md bg-slate-800 text-white
-              hover:bg-slate-700 transition">
-        View Recommended Support
-    </a>
-
-    <p class="text-xs text-slate-500 mt-6">
-        If you feel unsafe or are experiencing thoughts of self-harm,
-        please contact local emergency services or a crisis hotline immediately.
+    {{-- 4. FOOTER DISCLAIMER (Di luar kartu) --}}
+    <p class="result-disclaimer">
+        <strong>Note:</strong> This result is not a medical diagnosis.<br>
+        If you feel unsafe, please contact local emergency services immediately.
     </p>
 
 </div>

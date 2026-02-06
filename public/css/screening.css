@@ -1,0 +1,306 @@
+/* file: public/css/screening.css */
+
+/* --- 1. SETTING WARNA TEMA (SOFT PASTEL) --- */
+:root {
+    /* TEMA DEFAULT: PHQ-9 (Green) */
+    --primary: #10b981;        /* Hijau Emerald */
+    --primary-dark: #047857;
+
+    /* Request Warna Header: #DFFCF1 */
+    --bg-light: #DFFCF1;
+
+    /* PERBAIKAN: Warna Pilihan (Checked) jadi SANGAT LEMBUT (Anti Sakit Mata) */
+    --bg-checked: #f0fdf4;     /* Hijau super tipis, hampir putih */
+
+    --text-theme: #064e3b;     /* Teks Hijau Tua */
+
+    /* WARNA NETRAL */
+    --grey-50:  #fafafa;
+    --grey-100: #f5f5f5;
+    --grey-200: #e5e5e5;
+    --grey-400: #a3a3a3;
+    --grey-600: #525252;
+    --grey-800: #262626;
+    --ring-white: #ffffff;
+}
+
+/* TEMA KUNING: GAD-7 */
+.theme-amber {
+    --primary: #f59e0b;
+    --primary-dark: #b45309;
+    --bg-light: #FFF7DC;
+    --bg-checked: #fffdf5;     /* Kuning super tipis */
+    --text-theme: #78350f;
+}
+
+/* TEMA MERAH/PINK: PCL-5 */
+.theme-red {
+    --primary: #dc2626;
+    --primary-dark: #991b1b;
+    --bg-light: #FFE3EC;
+    --bg-checked: #fff5f7;     /* Pink super tipis */
+    --text-theme: #7f1d1d;
+}
+
+
+/* --- 2. LAYOUT UTAMA --- */
+.screening-container {
+    max-width: 48rem;
+    margin: 0 auto;
+    font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+    color: var(--grey-600) !important;
+}
+
+
+/* --- 3. STICKY HEADER & PROGRESS BAR --- */
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(4px);
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--grey-100);
+    transition: all 0.3s ease;
+}
+
+.progress-track {
+    position: relative;
+    width: 100%;
+}
+
+.track-bg {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 4px;
+    background-color: var(--grey-200);
+    transform: translateY(-50%);
+    border-radius: 9999px;
+    z-index: -10;
+}
+
+.track-fill {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 4px;
+    background-color: #10b981 !important; /* Paksa Hijau */
+    transform: translateY(-50%);
+    border-radius: 9999px;
+    z-index: -10;
+    transition: width 0.7s ease-out;
+}
+
+
+/* --- 4. STEP ICONS (FIX WARNA BIRU BANDEL) --- */
+.steps-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4px;
+}
+
+.step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Lingkaran Default (Mati) */
+.step-circle {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px; /* Atau 50% */
+    font-weight: bold;
+
+    /* PAKSA ABU (Override biru bawaan) */
+    background-color: var(--grey-100) !important;
+    color: var(--grey-400) !important;
+    border: 2px solid var(--grey-200) !important;
+}
+
+/* Lingkaran Aktif (NO 1 YANG MASIH BIRU) */
+.step-item.active .step-circle {
+    width: 2.5rem;
+    height: 2.5rem;
+
+    /* PENTING: !important ini wajib untuk menimpa default template */
+    background-color: var(--primary) !important;
+    color: white !important;
+    border-color: var(--primary) !important;
+
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
+    border: 4px solid var(--ring-white) !important;
+}
+
+/* Lingkaran Selesai (Centang) */
+.step-item.done .step-circle {
+    background-color: #10b981 !important;
+    color: white !important;
+    border: 4px solid var(--ring-white) !important;
+}
+
+/* Teks Label "MOOD" */
+.step-label {
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 4px;
+    /* Paksa warna tema, abaikan biru */
+    color: var(--primary) !important;
+}
+
+
+/* --- 5. HEADER BOX --- */
+.header-box {
+    text-align: center;
+    margin-bottom: 2rem;
+    background-color: var(--bg-light) !important;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.header-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-theme) !important;
+    margin-bottom: 0.5rem;
+}
+
+.header-desc {
+    color: var(--text-theme) !important;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+
+/* --- 6. KARTU PERTANYAAN --- */
+.questions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.question-card {
+    background-color: white;
+    border: 1px solid var(--grey-200);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    transition: all 0.2s;
+}
+
+.question-card:hover {
+    border-color: var(--primary);
+}
+
+.question-text {
+    font-weight: 600;
+    color: var(--grey-800) !important;
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+}
+
+
+/* --- 7. PILIHAN JAWABAN (FIX SAKIT MATA) --- */
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+}
+@media (min-width: 640px) {
+    .options-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.options-grid.cols-3 { grid-template-columns: 1fr; }
+@media (min-width: 768px) {
+    .options-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+}
+
+.radio-label {
+    position: relative;
+    cursor: pointer;
+}
+
+.sr-only-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.option-box {
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--grey-200);
+    transition: all 0.2s;
+    font-size: 0.875rem;
+    color: var(--grey-600);
+    background-color: white;
+}
+
+/* Hover State */
+.radio-label:hover .option-box {
+    background-color: white;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 1px var(--primary);
+}
+
+/* Selected/Checked State - VERSI LEMBUT (SOFT) */
+.sr-only-input:checked + .option-box {
+    background-color: var(--bg-checked) !important; /* Hijau pudar sekali */
+    border-color: var(--primary) !important;
+    color: var(--text-theme) !important;
+    font-weight: bold;
+    /* Shadow tipis, tidak terlalu tebal */
+    box-shadow: 0 0 0 1px var(--primary);
+}
+
+
+/* --- 8. TOMBOL NEXT (YANG TADI MASIH BIRU) --- */
+.btn-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+.btn-wrapper.end { justify-content: flex-end; }
+
+.btn-back {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--grey-400);
+    text-decoration: none;
+}
+.btn-back:hover { color: var(--grey-800); }
+
+.btn-next {
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+
+    /* PAKSA HIJAU dengan !important */
+    background-color: var(--primary) !important;
+    color: white !important;
+
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s;
+}
+.btn-next:hover {
+    background-color: var(--primary-dark) !important;
+}
