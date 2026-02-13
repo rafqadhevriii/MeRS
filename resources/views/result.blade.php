@@ -2,9 +2,7 @@
 
 @section('title', 'Screening Result – MeRS')
 
-
 <link rel="stylesheet" href="{{ asset('css/result.css') }}">
-
 
 @section('content')
 <div class="result-page-wrapper">
@@ -37,10 +35,11 @@
                     'class' => 'risk-high'
                 ]
             ];
+
             $currentResult = $labels[$risk] ?? $labels['low'];
         @endphp
 
-        {{-- 2. RESULT BOX (Fokus Utama) --}}
+        {{-- 2. RESULT BOX --}}
         <div class="risk-status-box {{ $currentResult['class'] }}">
             <div class="risk-badge">Current Status</div>
             <h2 class="risk-title">{{ $currentResult['title'] }}</h2>
@@ -57,9 +56,22 @@
             </a>
         </div>
 
+        {{-- 4. 30-DAY TOKEN SECTION --}}
+        @if(session('screening_token'))
+            <div class="result-token-box">
+                <h3 class="token-title">30-Day Follow-Up Token</h3>
+                <div class="token-code">
+                    {{ session('screening_token') }}
+                </div>
+                <p class="token-desc">
+                    Save this token securely. You can review your screening result within 30 days using this code.
+                </p>
+            </div>
+        @endif
+
     </div>
 
-    {{-- 4. FOOTER DISCLAIMER (Di luar kartu) --}}
+    {{-- 5. FOOTER DISCLAIMER --}}
     <p class="result-disclaimer">
         <strong>Note:</strong> This result is not a medical diagnosis.<br>
         If you feel unsafe, please contact local emergency services immediately.

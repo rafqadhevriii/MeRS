@@ -124,6 +124,13 @@ class ScreeningController extends Controller
 
             $emergency = $risk === 'high';
 
+             if (!$screening->screening_token) {
+            $token = 'MRS-' . strtoupper(bin2hex(random_bytes(4)));
+        } else {
+            $token = $screening->screening_token;
+        }
+
+
             $screening->update([
                 'pcl5_score' => $pcl5Score,
                 'risk_level' => $risk,
@@ -131,6 +138,7 @@ class ScreeningController extends Controller
                 'emergency_reason' => $emergency
                     ? 'High-risk classification based on clinical cut-off thresholds'
                     : null,
+                    'screening_token' => $token, // ✅ TAMBAHKAN INI
             ]);
 
             foreach ($validated as $key => $value) {
@@ -142,7 +150,9 @@ class ScreeningController extends Controller
                 ]);
             }
 
-            session(['risk_level' => $risk]);
+            session([
+                'risk_level' => $risk,'screening_token' => $token]);
+
         });
 
         return redirect('/result');

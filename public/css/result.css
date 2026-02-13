@@ -1,45 +1,43 @@
-/* --- 10. RE-LAYOUT RESULT PAGE (CLEAN CARD STYLE) --- */
+/* --- RESULT PAGE CLEAN CARD STYLE --- */
 
-/* Wrapper Halaman (Tengah Layar) */
 .result-page-wrapper {
-    min-height: 80vh; /* Biar ada di tengah vertikal juga */
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 2rem 1rem;
-    background-color: transparent; /* Atau warna background body */
+    background-color: transparent;
 }
 
-/* KARTU UTAMA (Kotak Putih) */
 .result-main-card {
     background: white;
     width: 100%;
-    max-width: 36rem; /* Lebar maksimal dibatasi biar rapi */
+    max-width: 36rem;
     border-radius: 1.5rem;
     padding: 2.5rem;
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08); /* Shadow halus */
-    border: 1px solid var(--grey-100);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e7eb;
     text-align: center;
 }
 
-/* Header di dalam kartu */
 .result-main-title {
     font-size: 1.75rem;
     font-weight: 800;
-    color: #1e293b; /* Slate-800 */
+    color: #1e293b;
     margin-bottom: 0.5rem;
     letter-spacing: -0.02em;
 }
 
 .result-subtitle {
-    color: #64748b; /* Slate-500 */
+    color: #64748b;
     font-size: 0.95rem;
     margin-bottom: 2rem;
     line-height: 1.5;
 }
 
-/* KOTAK STATUS RISIKO (Warna-warni) */
+/* RISK BOX */
+
 .risk-status-box {
     padding: 2rem;
     border-radius: 1rem;
@@ -48,7 +46,6 @@
     border: 1px solid transparent;
 }
 
-/* Badge Kecil "Current Status" */
 .risk-badge {
     display: inline-block;
     font-size: 0.75rem;
@@ -74,8 +71,7 @@
     opacity: 0.9;
 }
 
-/* VARIASI WARNA RISIKO (Modern Soft) */
-/* Low Risk */
+/* LOW */
 .risk-status-box.risk-low {
     background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
     color: #065f46;
@@ -83,7 +79,7 @@
 }
 .risk-low .risk-badge { color: #047857; }
 
-/* Moderate Risk */
+/* MODERATE */
 .risk-status-box.risk-mod {
     background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
     color: #92400e;
@@ -91,7 +87,7 @@
 }
 .risk-mod .risk-badge { color: #b45309; }
 
-/* High Risk */
+/* HIGH */
 .risk-status-box.risk-high {
     background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
     color: #991b1b;
@@ -99,8 +95,8 @@
 }
 .risk-high .risk-badge { color: #b91c1c; }
 
-
 /* ACTION AREA */
+
 .action-label {
     font-size: 0.875rem;
     font-weight: 600;
@@ -112,9 +108,9 @@
 
 .btn-result-primary {
     display: inline-block;
-    width: 100%; /* Tombol Penuh */
+    width: 100%;
     padding: 1rem;
-    background-color: #1e293b; /* Hitam Elegan */
+    background-color: #1e293b;
     color: white;
     font-weight: 600;
     border-radius: 0.75rem;
@@ -129,7 +125,41 @@
     box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
 }
 
-/* DISCLAIMER BAWAH */
+/* TOKEN SECTION */
+
+.result-token-box {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px dashed #cbd5e1;
+    background-color: #f8fafc;
+}
+
+.token-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #475569;
+    margin-bottom: 0.75rem;
+}
+
+.token-code {
+    font-family: monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.75rem;
+    color: #0f172a;
+}
+
+.token-desc {
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+/* DISCLAIMER */
+
 .result-disclaimer {
     margin-top: 2rem;
     text-align: center;

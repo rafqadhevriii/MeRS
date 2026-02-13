@@ -1,0 +1,11 @@
+/* Welcome hero custom styles: 3D effects, background, CTAs */
+.hero-bg{background:linear-gradient(180deg,#eaf4ff 0%, #f7fbff 40%), radial-gradient(600px 400px at 10% 20%, rgba(11,95,239,0.12), transparent 20%), radial-gradient(450px 300px at 90% 80%, rgba(11,95,239,0.06), transparent 30%);filter:blur(18px)}
+.hero-card{transform:perspective(900px) rotateY(-6deg) translateZ(12px);transition:transform .35s ease,box-shadow .35s ease}
+.hero-card:hover{transform:perspective(900px) rotateY(0deg) translateZ(18px)}
+.shadow-3d{box-shadow:0 18px 40px rgba(11,95,239,0.12),0 6px 18px rgba(3,18,54,0.08)}
+.hero-cta-primary{background:#0b5fef;border:1px solid rgba(11,95,239,0.98);box-shadow:0 8px 22px rgba(11,95,239,0.18);color:#fff}
+.hero-cta-primary:hover{transform:translateY(-2px);box-shadow:0 20px 30px rgba(11,95,239,0.22)}
+.hero-cta-secondary{background:transparent}
+@media (max-width:63.99rem){
+  .hero-card{width:320px}
+}

@@ -12,6 +12,7 @@ class Screening extends Model
 
     protected $fillable = [
         'session_id',
+        'screening_token',
         'phq9_score',
         'gad7_score',
         'pcl5_score',
@@ -26,14 +27,44 @@ class Screening extends Model
         'emergency_flag' => 'boolean',
     ];
 
+    /*
+    |--------------------------------------------------------------------------
+    | RELATION
+    |--------------------------------------------------------------------------
+    */
+
     public function answers(): HasMany
     {
         return $this->hasMany(ScreeningAnswer::class);
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | AUTO DELETE CHILD RECORDS
+    |--------------------------------------------------------------------------
+    */
+
+    protected static function booted()
+    {
+        static::deleting(function ($screening) {
+            $screening->answers()->delete();
+        });
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | HELPER METHODS
+    |--------------------------------------------------------------------------
+    */
+
     public function isExpired(): bool
     {
         return $this->expires_at->isPast();
+    }
+
+    public static function scopeExpired($query)
+    {
+        return $query->where('expires_at', '<=', now());
     }
 
     public static function defaultExpiry(): Carbon
