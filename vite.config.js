@@ -8,7 +8,6 @@ export default defineConfig({
             // SAYA TAMBAHKAN home.css DI BAWAH INI 👇
             input: [
                 'resources/css/app.css',
-                'resources/css/home.css',
                 'resources/js/app.js'
             ],
             refresh: true,
