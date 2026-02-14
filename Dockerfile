@@ -24,7 +24,7 @@ WORKDIR /var/www
 COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
-RUN php artisan migrate:fresh --seed
+RUN php artisan migrate --force
 
 COPY --from=nodebuilder /app/public/build /var/www/public/build
 
